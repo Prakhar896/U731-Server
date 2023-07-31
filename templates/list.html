@@ -1,0 +1,30 @@
+{% extends "baseXNav.html" %}
+
+{% block tabTitle %}List | U731 Server{% endblock %}
+
+{% block head %}
+<style>
+    #content {
+        margin: 20px;
+        text-align: left;
+        list-style-position: inside;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div id="content">
+    <h1>Feedback Data List</h1>
+    <br>
+    <br>
+    {% if feedbackData|length == 0 %}
+    <p><strong>No feedback data in the system.</strong></p>
+    {% else %}
+    <ol>
+        {% for id in feedbackData %}
+        <li><a href="{{ url_for("feedbackDetail", authToken=authToken, id=id) }}">ID: {{ id }}, by: {{ feedbackData[id]["name"] }}</a></li>
+        {% endfor %}
+    </ol>
+    {% endif %}
+</div>
+{% endblock %}

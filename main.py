@@ -83,9 +83,24 @@ def listPage(authToken):
     saveToFile(database)
 
     if "session" in database and database["session"]["token"] == authToken:
-        return "Access Granted"
+        return render_template("list.html", authToken=authToken, feedbackData=database["feedback"])
     else:
         return redirect(url_for("errorPage", error="Invalid auth token. Access Denied."))
+    
+@app.route("/session/<authToken>/feedback/<id>")
+def feedbackDetail(authToken, id):
+    global database
+
+    ## Expire auth tokens
+    database = expireAuthToken(database)
+    saveToFile(database)
+
+    if not ("session" in database and database["session"]["token"] == authToken):
+        return redirect(url_for("errorPage", error="Invalid auth token. Access Denied."))
+    if id not in database["feedback"]:
+        return redirect(url_for("errorPage", error="Invalid feedback ID."))
+    
+    return "ID: {}, Name: {}, Feedback: {}".format(id, database["feedback"][id]["name"], database["feedback"][id]["feedback"])
 
 ## API
 @app.route("/api/login", methods=['POST'])
@@ -136,4 +151,5 @@ def indexJS():
     return fileContent("supportJSFiles/index.js", passAPIKey=True)
 
 if __name__ == '__main__':
+    Emailer.checkContext()
     app.run(host='0.0.0.0', port=8000)
