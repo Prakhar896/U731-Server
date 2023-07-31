@@ -2,3 +2,5 @@ virt/
 .env
 __pycache__/
 data.txt
+venv/
+virt/
