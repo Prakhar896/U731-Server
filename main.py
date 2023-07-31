@@ -8,11 +8,20 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
+database = loadFromFile()
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
+@app.route("/session/<authToken>/list")
+def listPage(authToken):
+    global database
 
+    if "session" in database and database["session"]["token"] == authToken:
+        return "Access Granted"
+    else:
+        return redirect(url_for("errorPage", error="Invalid auth token. Access Denied."))
 
 ## Misc
 @app.route("/security/error")
