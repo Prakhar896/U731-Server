@@ -127,6 +127,22 @@ def deleteAll(authToken):
 
     return redirect(url_for("listPage", authToken=authToken))
 
+@app.route("/session/<authToken>/logout", methods=['GET'])
+def logout(authToken):
+    global database
+
+    ## Expire auth tokens
+    database = expireAuthToken(database)
+    saveToFile(database)
+
+    if not ("session" in database and database["session"]["token"] == authToken):
+        return redirect(url_for("errorPage", error="Invalid auth token. Access Denied."))
+    
+    database["session"]["token"] = None
+    saveToFile(database)
+
+    return redirect(url_for("index"))
+
 ## API
 @app.route("/api/login", methods=['POST'])
 def loginUser():
@@ -177,4 +193,4 @@ def indexJS():
 
 if __name__ == '__main__':
     Emailer.checkContext()
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=os.environ['RuntimePort'])
