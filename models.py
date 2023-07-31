@@ -35,7 +35,7 @@ def loadFromFile():
     else:
         with open("data.txt", "w") as f:
             data = {
-                "data": {}
+                "feedback": {}
             }
             json.dump(data, f)
 

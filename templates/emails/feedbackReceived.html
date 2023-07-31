@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Received | Unit 731</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 10px;
+            margin-top: 80px;
+            text-align: center;
+            font-size: larger;
+        }
+
+        #formData {
+            text-align: left;
+            padding: 10px;
+        }
+
+        #copyright {
+            font-size: smaller;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body data-bs-theme="dark">
+    <div id="content">
+        <h1>Feedback Received | Unit 731</h1>
+        <br>
+        <h3>Thanks, {{ name }}!</h3>
+        <br>
+        <br>
+        <p>Thank you so much for visiting my informative website, <a href="https://prakhar896.github.io/Unit-731">Unit 731</a>. I sincerely appreciate your feedback on your experience with the website as it helps me to make better products, content and a smoother user experience.</p>
+        <p>Your feedback form details are as shown below:</p>
+        <br>
+        <br>
+        <div id="formData">
+            <p><strong>Name: </strong>{{ name }}</p>
+            <p><strong>Email: </strong>{{ email }}</p>
+            <p><strong>Feedback:</strong></p>
+            <p>{{ feedback }}</p>
+        </div>
+        <br>
+        <br>
+        <p>Do note that I respect your privacy and all of your data is kept confidential.</p>
+        <p>Thank you so much for your time!</p>
+        <br>
+        <br>
+        <p id="copyright">© Copyright 2023 Prakhar Trivedi</p>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+
+</html>

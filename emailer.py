@@ -33,10 +33,7 @@ class Emailer:
         if not Emailer.servicesEnabled:
             print("EMAILER: Emailing services are not enabled. Skipping email.")
             return True
-
-        if 'GitpodEnvironment' in os.environ and os.environ['GitpodEnvironment'] == 'True':
-            print("EMAILER: Skipping email due to Gitpod environment.")
-            return True
+        
         try:
             message = MIMEMultipart("alternative")
             message["Subject"] = subject
