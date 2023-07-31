@@ -3,4 +3,4 @@ virt/
 __pycache__/
 data.txt
 venv/
-virt/
+isInReplit.txt

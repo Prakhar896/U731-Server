@@ -1,4 +1,9 @@
-import os, sys, shutil, json, re, random, datetime, time, subprocess
+import os, sys, shutil, json, random, datetime, copy
+
+if os.path.isfile(os.path.join(os.getcwd(), "isInReplit.txt")):
+    print("Replit environment detected. Installing libraries...")
+    os.system("pip install -r requirements.txt")
+
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_cors import CORS
 from models import *
