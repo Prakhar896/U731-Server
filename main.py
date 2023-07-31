@@ -131,5 +131,9 @@ def errorPage():
 def copyright():
     return fileContent("copyright.js")
 
+@app.route("/assets/indexJS")
+def indexJS():
+    return fileContent("supportJSFiles/index.js", passAPIKey=True)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
