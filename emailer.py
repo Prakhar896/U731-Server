@@ -16,8 +16,8 @@ class Emailer:
     @staticmethod
     def checkContext():
         if "EmailingServicesEnabled" in os.environ and os.environ['EmailingServicesEnabled'] == 'True':
-            Emailer.sender_email = os.environ["ActivatorSystemEmail"]
-            Emailer.password = os.environ['ActivatorSystemEmailAppPassword']
+            Emailer.sender_email = os.environ["SystemEmail"]
+            Emailer.password = os.environ['SystemEmailAppPassword']
             Emailer.servicesEnabled = True
 
         Emailer.contextChecked = True

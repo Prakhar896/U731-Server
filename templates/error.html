@@ -1,0 +1,28 @@
+{% extends "baseXNav.html" %}
+
+{% block tabTitle %}Error Occurred | U731 Server{% endblock %}
+
+{% block head %}
+<style>
+    body {
+        margin: 20px;
+        margin-top: 150px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div id="content">
+    <h1>An Error Occurred</h1>
+    <br>
+    <br>
+    {% if error == None %}
+    <h3>No error message was provided.</h3>
+    {% else %}
+    <h3>{{ error }}</h3>
+    {% endif %}
+    <br>
+    <br>
+    <script src="/assets/copyright"></script>
+</div>
+{% endblock %}
