@@ -57,3 +57,9 @@ function login() {
         statusLabel.style.visibility = 'hidden'
     })
 }
+
+document.getElementById("passwordField").addEventListener("keyup", (event) => {
+    if (event.key == "Enter") {
+        login()
+    }
+})
