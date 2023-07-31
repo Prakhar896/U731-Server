@@ -1,0 +1,30 @@
+{% extends "baseXNav.html" %}
+
+{% block tabTitle %}Feedback Detail | U731 Server{% endblock %}
+
+{% block head %}
+<style>
+    #content {
+        margin: 20px;
+        text-align: left;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div id="content">
+    <h1>Details For: {{ feedback["id"] }}</h1>
+    <br>
+    <br>
+    <p>ID: {{ feedback["id"] }}</p>
+    <br>
+    <p>Sender's Name: {{ feedback["name"] }}</p>
+    <br>
+    <p>Email Address: {{ feedback["email"] }}</p>
+    <br>
+    <p>Received Datetime: {{ feedback["receivedTimestamp"] }}</p>
+    <br>
+    <p>Feedback:</p>
+    <p>{{ feedback["feedback"] }}</p>
+</div>
+{% endblock %}

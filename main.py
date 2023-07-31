@@ -44,6 +44,7 @@ def feedbackReceived():
     database["feedback"][id] = {
         "name": name,
         "email": email,
+        "receivedTimestamp": datetime.datetime.now().strftime(datetimeFormat),
         "feedback": feedback
     }
     saveToFile(database)
@@ -100,7 +101,31 @@ def feedbackDetail(authToken, id):
     if id not in database["feedback"]:
         return redirect(url_for("errorPage", error="Invalid feedback ID."))
     
-    return "ID: {}, Name: {}, Feedback: {}".format(id, database["feedback"][id]["name"], database["feedback"][id]["feedback"])
+    feedbackObject = {
+        "id": id,
+        "name": database["feedback"][id]["name"],
+        "email": database["feedback"][id]["email"],
+        "receivedTimestamp": database["feedback"][id]["receivedTimestamp"],
+        "feedback": database["feedback"][id]["feedback"]
+    }
+
+    return render_template('feedbackDetail.html', feedback=feedbackObject)
+
+@app.route("/session/<authToken>/deleteAll", methods=['GET'])
+def deleteAll(authToken):
+    global database
+
+    ## Expire auth tokens
+    database = expireAuthToken(database)
+    saveToFile(database)
+
+    if not ("session" in database and database["session"]["token"] == authToken):
+        return redirect(url_for("errorPage", error="Invalid auth token. Access Denied."))
+    
+    database["feedback"] = {}
+    saveToFile(database)
+
+    return redirect(url_for("listPage", authToken=authToken))
 
 ## API
 @app.route("/api/login", methods=['POST'])

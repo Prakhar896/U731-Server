@@ -20,6 +20,8 @@
     {% if feedbackData|length == 0 %}
     <p><strong>No feedback data in the system.</strong></p>
     {% else %}
+    <a href="deleteAll"><p>Delete All</p></a>
+    <br>
     <ol>
         {% for id in feedbackData %}
         <li><a href="{{ url_for("feedbackDetail", authToken=authToken, id=id) }}">ID: {{ id }}, by: {{ feedbackData[id]["name"] }}</a></li>
